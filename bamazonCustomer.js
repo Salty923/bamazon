@@ -1,7 +1,10 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 
-
+var selection;
+var stock;
+var price;
+var product;
 
 //Create connection
 const connection = mysql.createConnection({
@@ -30,19 +33,19 @@ function start() {
             }
             else {
                 console.log("Great! Please see out inventory below.");
-                inventory();
+                shop();
             }
         });
 
 }
 
 
-function inventory() {
+function shop() {
     console.log("Showing all products...\n");
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
         for (var i = 0; i < res.length; i++) {
-            console.log(`${res[i].id}:${res[i].product_name} $${res[i].price} ${res[i].stock_quanity} in stock.`);
+            console.log(`#${res[i].id}:${res[i].product_name} $${res[i].price} ${res[i].stock_quanity} in stock.`);
         }
         purchase();
     });
@@ -53,16 +56,66 @@ function purchase(){
         .prompt({
             name: "buy",
             type: "input",
-            message: "Please enter the number of the item you would like to purchase.",
+            message: "Please enter the # of the item you would like to purchase.",
         })
         .then(function (answer) {
-            var selection = answer.buy;
+            selection = answer.buy-1;
             connection.query("SELECT * FROM products", function (err, res) {
                 if (err) throw err;
-                console.log(`You have selected ${res[selection].product_name}`);
-            connection.end();
-            });
+                product = res[selection].product_name
+                stock = res[selection].stock_quanity;
+                price = res[selection].price;
+                console.log(`You have selected ${product}`);
+                console.log(`There are ${stock} in stock and each cost $${price}.`);
+                quanity();
             
+            });
+           
         });
 }
 
+
+function quanity(){
+    inquirer
+        .prompt({
+            name: "amount",
+            type: "input",
+            message: "How many would you like to purchase?",
+        })
+        .then(function (answer) {
+            var amount = answer.amount;
+            connection.query("SELECT * FROM products", function (err, res) {
+                if (err) throw err;
+                if (stock === 0) {
+                    console.log(`Sorry, we do not have any ${product} left in stock.`)
+                }else if (amount > stock) {
+                    console.log(`Sorry, we only have ${stock} ${product}s remaining. `)
+                }else{
+                    console.log("Congrats on your purchase");
+                    stock -= amount;
+                    console.log(stock);
+                    updateStock();
+                }
+                connection.end();
+                start();
+            });
+
+        });
+}
+
+function updateStock(){
+    connection.query(
+        "UPDATE products SET ? WHERE ?",
+        [
+            {
+                stock_quanity: stock
+            },
+            {
+                product_name: product
+            }
+        ],
+        function(err,res) {
+            if (err) throw err;
+        }
+    )
+}
