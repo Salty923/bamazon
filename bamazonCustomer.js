@@ -91,10 +91,9 @@ function quanity(){
                 }else if (amount > stock) {
                     console.log(`Sorry, we only have ${stock} ${product}s remaining. `)
                 }else{
-                    console.log("Congrats on your purchase");
                     stock -= amount;
-                    console.log(stock);
                     updateStock();
+                    console.log(`Please pay $${price * amount}.`);
                 }
                 connection.end();
                 start();
@@ -119,3 +118,4 @@ function updateStock(){
         }
     )
 }
+

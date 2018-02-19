@@ -1,37 +1,26 @@
+DROP DATABASE IF EXISTS bamazon;
 
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Football", "Sporting Goods", 23, 7);
+CREATE DATABASE bamazon;
 
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Advil", "Pharmacy", 8.50, 15);
+USE bamazon;
 
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Tent", "Sporting Goods", 175, 3);
+CREATE TABLE products(
+    id INT AUTO_INCREMENT NOT NULL,
+    product_name VARCHAR(50) NOT NULL,
+    department_name VARCHAR(50) NOT NULL,
+    price DECIMAL(8,2) NOT NULL,
+    stock_quanity INT(10) NOT NULL,
+    PRIMARY KEY(id)
+);
 
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Baseball", "Sporting Goods", 8, 30);
-
-
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Sledgehammer", "Tools", 17, 5);
-
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Barbie", "Toys", 6, 10);
 
 
 INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Stereo", "Audio", 125, 3);
-
-
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Coloring Book", "Books", 3, 2);
-
-INSERT INTO products(product_name, department_name, price, stock_quanity)
-VALUES ("Minions", "Movies", 19.99, 8);
-
-
-
-
+VALUES ("Football", "Sporting Goods", 23.99, 7), ("Minions", "Movies", 19.99, 8),
+("Coloring Book", "Books", 3, 2),("Stereo", "Audio", 125, 3),("Barbie", "Toys", 6, 10),
+("Sledgehammer", "Tools", 17, 5),("Baseball", "Sporting Goods", 8, 30),
+("Tent", "Sporting Goods", 175, 3),("Advil", "Pharmacy", 8.50, 15),
+("Socks", "Clothing", 10.99, 28);
 
 
 
