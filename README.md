@@ -1,6 +1,6 @@
-#Welcome to Bamazon
+#Welcome to bamazonCustomer
 
-Bamazon is a NODE CLI app that links to an SQL database that tracks inventory and pricing of the items in the store.
+BamazonCustomer is a NODE CLI app that links to an SQL database that tracks inventory and pricing of the items in the store.
 
 ![Start App](/images/2.png)
 
@@ -20,6 +20,47 @@ Bamazon is a NODE CLI app that links to an SQL database that tracks inventory an
  After the user selects the quanity, the total price will be displayed and the SQL database stock total will be reduced by the number purchased. The app will then start from the begining incase the user would like to purcase and additional item.
 
  ![Start App](/images/5.png)
+
+ ---
+
+
+ ![Start App](/images/nodejs.png)            ![Start App](/images/sql.jpeg)
+
+---
+
+
+---
+
+
+ ## Welcome to bamazonManager
+
+BamazonManager is a NODE CLI app that links to an SQL database and allows a manger to view all inventory, low inventory, stock inventory, and add new products.
+
+![Start App](/images/7.png)
+
+---
+  
+View products!
+
+  ![Start App](/images/8.png)
+  
+  ---
+  View low inventory!
+
+
+ ![Start App](/images/9.png)
+
+ ---
+
+ Add inventory to existing product line!
+
+ ![Start App](/images/10.png)
+
+ ---
+
+ Add new products!
+
+ ![Start App](/images/11.png)
 
  ---
 
